@@ -7,6 +7,8 @@ function App() {
 
   const [inputText, setInputText] = useState("");
   const [todos, setTodos] = useState([]);
+  const [status, setStatus] = useState('all');
+  const [filteredTodos, setFilteredTodos] = useState([]);
 
   return (
     <div className="App">
@@ -16,7 +18,8 @@ function App() {
       <Form inputText={inputText} 
             todos={todos} 
             setTodos={setTodos} 
-            setInputText={setInputText}/>
+            setInputText={setInputText}
+            setStatus={setStatus} />
       <TodoList 
             todos={todos} 
             setTodos={setTodos} />
