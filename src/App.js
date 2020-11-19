@@ -12,12 +12,12 @@ function App() {
 
   useEffect(() => {
     getLocalTodos();
-  }, [])
+  }, []);
 
   useEffect(() => {
-    filterHandler()
+    filterHandler();
+    saveLocalTodos();
   }, [todos, status]);
-
 
   const filterHandler = () => {
     switch(status) {
@@ -38,10 +38,11 @@ function App() {
   }
 
   const getLocalTodos = () => {
-    if(localStorage.getItem('todos') === null){
+    if (localStorage.getItem('todos') === null) {
       localStorage.setItem('todos', JSON.stringify([]));
     } else {
-      localStorage.setItem('todos', JSON.stringify(todos));
+      let todoLocal = JSON.parse(localStorage.getItem("todos"));
+      setTodos(todoLocal);
     }
   }
 
@@ -57,9 +58,9 @@ function App() {
             setStatus={setStatus} 
              />
       <TodoList 
-            todos={todos} 
-            setTodos={setTodos}
-            filteredTodos={filteredTodos} />
+          todos={todos} 
+          setTodos={setTodos}
+          filteredTodos={filteredTodos} />
     </div>
   );
 }
